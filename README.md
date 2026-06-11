@@ -66,3 +66,4 @@ $ oc apply -f https://charts.openshift.io/openshift-charts-repo.yaml
 Once this repository is available and configured, Helm Charts will be available in the [OpenShift Developer Perspective](https://docs.openshift.com/container-platform/latest/applications/working_with_helm_charts/configuring-custom-helm-chart-repositories.html#odc-installing-helm-charts-using-developer-perspective_configuring-custom-helm-chart-repositories)
 
 You can also use Helm CLI commands, please refere to [Using Helm Guide](https://helm.sh/docs/intro/using_helm/) for detailed instructions on how to use the Helm client.
+
