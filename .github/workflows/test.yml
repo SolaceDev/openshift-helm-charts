@@ -40,7 +40,7 @@ jobs:
       needs.check-contributor.outputs.is-repo-owner == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.sha }}
@@ -48,7 +48,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python 3.x Part 1
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.10"
 
@@ -154,7 +154,7 @@ jobs:
       - name: Merge PR
         id: merge_pr
         if: ${{ steps.check_if_release_pr.outputs.charts_release_branch == 'true' }}
-        uses: pascalgn/automerge-action@v0.16.2
+        uses: pascalgn/automerge-action@58724c982461efbb7865b3762d7bff0d4756f57a # v0.16.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MERGE_METHOD: squash

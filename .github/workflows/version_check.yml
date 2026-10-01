@@ -83,7 +83,7 @@ jobs:
 
       - name: Checkout software-version branch
         if: steps.check_repo.outputs.check-version == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: "software-version"
           repository: ${{ github.repository }}
@@ -91,7 +91,7 @@ jobs:
       - name: Read previous OpenShift version
         id: get_prev_ocp_version
         if: steps.check_repo.outputs.check-version == 'true'
-        uses: mikefarah/yq@master
+        uses: mikefarah/yq@247492ffba4089e7d33f6cef17789bd35e80b0b6 # master
         with:
           cmd: yq e '.openshift.release-client-version' software-version.yaml
 
@@ -130,7 +130,7 @@ jobs:
       - name: Update software-version.yaml
         if: |
           steps.check_test.outputs.update-version == 'true'
-        uses: mikefarah/yq@master
+        uses: mikefarah/yq@247492ffba4089e7d33f6cef17789bd35e80b0b6 # master
         with:
           cmd: yq eval -i '.openshift.release-client-version = "${{ steps.get_curr_ocp_version.outputs.curr_ocp_version }}"' 'software-version.yaml'
 
@@ -150,7 +150,7 @@ jobs:
       - name: Checkout main branch
         if: |
           steps.check_test.outputs.run_tests == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: "main"
           token: ${{ secrets.BOT_TOKEN }}
@@ -159,7 +159,7 @@ jobs:
       - name: Set up Python 3.x Part 1
         if: |
           steps.check_test.outputs.run_tests == 'true'
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.10"
 
@@ -220,7 +220,7 @@ jobs:
       - name: Send message to helm_dev slack channel
         id: notify_dev
         if: ${{ always() && github.event_name == 'schedule' && steps.check_test.outputs.run_tests == 'true' && steps.run-schedule-tests.conclusion != 'success' }}
-        uses: archive/github-actions-slack@v2.8.0
+        uses: archive/github-actions-slack@cb6f1f6bc7bfe991ea956833f9515dac40da14d2 # v2.8.0
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: C02979BDUPL
@@ -233,7 +233,7 @@ jobs:
       - name: Send message to helm_notify slack channel
         id: notify
         if: ${{ always() && github.event_name == 'schedule' && steps.check_test.outputs.run_tests == 'true' && steps.run-schedule-tests.conclusion == 'success' }}
-        uses: archive/github-actions-slack@v2.8.0
+        uses: archive/github-actions-slack@cb6f1f6bc7bfe991ea956833f9515dac40da14d2 # v2.8.0
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: C04K1ARMH8A
@@ -288,7 +288,7 @@ jobs:
 
       - name: Checkout software-version branch
         if: steps.check_repo.outputs.check-version == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: "software-version"
           repository: ${{ github.repository }}
@@ -296,7 +296,7 @@ jobs:
       - name: Read previous Chart Verifier digest
         if: steps.check_repo.outputs.check-version == 'true'
         id: get_prev_cv_digest
-        uses: mikefarah/yq@master
+        uses: mikefarah/yq@247492ffba4089e7d33f6cef17789bd35e80b0b6 # master
         with:
           cmd: yq e '.chart-verifier.latest-manifest-digest' software-version.yaml
 
@@ -337,7 +337,7 @@ jobs:
       - name: Update software-version.yaml
         if: |
           steps.check_test.outputs.update-version == 'true'
-        uses: mikefarah/yq@master
+        uses: mikefarah/yq@247492ffba4089e7d33f6cef17789bd35e80b0b6 # master
         with:
           cmd: yq eval -i '.chart-verifier.latest-manifest-digest = ${{ steps.get_curr_cv_version.outputs.current_cv_digest }}' 'software-version.yaml'
 
@@ -357,7 +357,7 @@ jobs:
       - name: Checkout charts main branch
         if: |
           steps.check_test.outputs.run_tests == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: "main"
           token: ${{ secrets.BOT_TOKEN }}
@@ -366,7 +366,7 @@ jobs:
       - name: Set up Python 3.x Part 1
         if: |
           steps.check_test.outputs.run_tests == 'true'
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.10"
 
@@ -429,7 +429,7 @@ jobs:
       - name: Send message to helm_dev slack channel
         id: notify_dev
         if: ${{ always() && github.event_name == 'schedule' && steps.check_test.outputs.run_tests == 'true' && steps.run-schedule-tests.conclusion != 'success' }}
-        uses: archive/github-actions-slack@v2.8.0
+        uses: archive/github-actions-slack@cb6f1f6bc7bfe991ea956833f9515dac40da14d2 # v2.8.0
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: C02979BDUPL
@@ -442,7 +442,7 @@ jobs:
       - name: Send message to helm_notify slack channel
         id: notify
         if: ${{ always() && github.event_name == 'schedule' && steps.check_test.outputs.run_tests == 'true' && steps.run-schedule-tests.conclusion == 'success' }}
-        uses: archive/github-actions-slack@v2.8.0
+        uses: archive/github-actions-slack@cb6f1f6bc7bfe991ea956833f9515dac40da14d2 # v2.8.0
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: C04K1ARMH8A
