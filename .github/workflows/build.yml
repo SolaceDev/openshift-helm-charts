@@ -387,7 +387,7 @@ jobs:
       - name: Approve PR
         id: approve_pr
         if: ${{ steps.check_report.conclusion == 'success' }}
-        uses: hmarr/auto-approve-action@v3
+        uses: hmarr/auto-approve-action@7d0ab8fdbb906da8a6297d373561d5ccb137d98f # v3
         with:
           # The token we use for this changes for the Sandbox repository because the sandbox repository
           # receives PRs from the openshift-helm-charts-bot, and that same bot cannot approve its own
